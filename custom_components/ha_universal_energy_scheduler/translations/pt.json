@@ -1,0 +1,166 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Escolher país",
+        "description": "Escolha o país cujos tarifários de eletricidade quer seguir.\n\n⚠️ Beta: os horários e preços dos tarifários ainda precisam de confirmação. Confirme sempre com a sua fatura e reporte erros no GitHub.",
+        "data": {
+          "country": "País"
+        }
+      },
+      "plan": {
+        "title": "Tarifário",
+        "description": "Tarifários disponíveis para {country}.",
+        "data": {
+          "operator": "Comercializador",
+          "plan": "Tarifário",
+          "holiday_entity": "Sensor de dias úteis (opcional)"
+        },
+        "data_description": {
+          "operator": "Escolha da lista ou escreva outro. Serve para dar nome ao dispositivo e sugerir preços.",
+          "holiday_entity": "Só para tarifários em que os feriados contam como domingo (ex.: Espanha 2.0TD, Itália). Escolha um sensor que fique DESLIGADO nos dias não úteis, como o da integração Workday. Em Portugal normalmente não é necessário."
+        }
+      },
+      "price_mode": {
+        "title": "Preços",
+        "description": "Como quer definir o preço por kWh do tarifário {plan}?\n\nPreços de origem: {defaults}",
+        "data": {
+          "price_mode": "Origem dos preços"
+        }
+      },
+      "prices": {
+        "title": "Preços",
+        "description": "Preço por kWh de cada período do tarifário {plan}. Os campos vêm preenchidos com os preços de origem quando existem; altere só o que for diferente no seu contrato.",
+        "data": {
+          "price_off_peak": "Preço vazio",
+          "price_mid_peak": "Preço cheias",
+          "price_peak": "Preço ponta",
+          "price_standard": "Preço fora de vazio",
+          "price_flat": "Preço"
+        }
+      }
+    },
+    "error": {
+      "cannot_load": "Não foi possível carregar os dados de tarifários deste país."
+    },
+    "abort": {
+      "no_tariff_data": "Não foram encontrados ficheiros de tarifários."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opções do tarifário",
+        "description": "Altere o tarifário de {country} (por exemplo quando o seu contador mudar para os novos horários da ERSE).",
+        "data": {
+          "operator": "Comercializador",
+          "plan": "Tarifário",
+          "holiday_entity": "Sensor de dias úteis (opcional)"
+        },
+        "data_description": {
+          "operator": "Escolha da lista ou escreva outro. Serve para dar nome ao dispositivo e sugerir preços.",
+          "holiday_entity": "Só para tarifários em que os feriados contam como domingo (ex.: Espanha 2.0TD, Itália). Escolha um sensor que fique DESLIGADO nos dias não úteis, como o da integração Workday. Em Portugal normalmente não é necessário."
+        }
+      },
+      "price_mode": {
+        "title": "Preços",
+        "description": "Como quer definir o preço por kWh do tarifário {plan}?\n\nPreços de origem: {defaults}",
+        "data": {
+          "price_mode": "Origem dos preços"
+        }
+      },
+      "prices": {
+        "title": "Preços",
+        "description": "Preço por kWh de cada período do tarifário {plan}. Os campos vêm preenchidos com os preços de origem quando existem; altere só o que for diferente no seu contrato.",
+        "data": {
+          "price_off_peak": "Preço vazio",
+          "price_mid_peak": "Preço cheias",
+          "price_peak": "Preço ponta",
+          "price_standard": "Preço fora de vazio",
+          "price_flat": "Preço"
+        }
+      }
+    },
+    "abort": {
+      "cannot_load": "Não foi possível carregar os dados de tarifários deste país."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "current_period": {
+        "name": "Período atual",
+        "state": {
+          "off_peak": "Vazio",
+          "mid_peak": "Cheias",
+          "peak": "Ponta",
+          "standard": "Fora de vazio",
+          "flat": "Simples"
+        },
+        "state_attributes": {
+          "next_period": {
+            "name": "Próximo período",
+            "state": {
+              "off_peak": "Vazio",
+              "mid_peak": "Cheias",
+              "peak": "Ponta",
+              "standard": "Fora de vazio",
+              "flat": "Simples"
+            }
+          },
+          "next_change": {
+            "name": "Próxima mudança"
+          },
+          "season": {
+            "name": "Época",
+            "state": {
+              "all": "Todo o ano",
+              "winter": "Inverno",
+              "summer": "Verão"
+            }
+          },
+          "day_type": {
+            "name": "Tipo de dia",
+            "state": {
+              "workday": "Dia útil",
+              "saturday": "Sábado",
+              "sunday": "Domingo",
+              "holiday": "Feriado"
+            }
+          }
+        }
+      },
+      "next_change": {
+        "name": "Próxima mudança",
+        "state_attributes": {
+          "next_period": {
+            "name": "Próximo período",
+            "state": {
+              "off_peak": "Vazio",
+              "mid_peak": "Cheias",
+              "peak": "Ponta",
+              "standard": "Fora de vazio",
+              "flat": "Simples"
+            }
+          }
+        }
+      },
+      "current_price": {
+        "name": "Preço atual"
+      }
+    },
+    "binary_sensor": {
+      "off_peak": {
+        "name": "Vazio"
+      }
+    }
+  },
+  "selector": {
+    "price_mode": {
+      "options": {
+        "default": "Usar preços de origem (atualizados com a integração)",
+        "manual": "Definir os meus preços",
+        "none": "Sem preços"
+      }
+    }
+  }
+}

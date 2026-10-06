@@ -1,0 +1,13 @@
+{
+  "name": "Universal Energy Scheduler",
+  "homeassistant": "2025.2.0",
+  "country": [
+    "PT",
+    "ES",
+    "FR",
+    "DE",
+    "IT",
+    "GB"
+  ],
+  "render_readme": true
+}

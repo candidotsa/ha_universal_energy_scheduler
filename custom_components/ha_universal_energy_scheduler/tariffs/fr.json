@@ -1,0 +1,43 @@
+{
+  "name": "France",
+  "source": "Option Heures Pleines / Heures Creuses (plages fixées par Enedis selon le compteur)",
+  "notes": "Les plages d'heures creuses dépendent de votre point de livraison : vérifiez votre facture. Contributions bienvenues pour d'autres plages.",
+  "operators": ["EDF", "Engie", "Ekwateur", "Mint Énergie", "Octopus Energy", "TotalEnergies", "Autre"],
+  "plans": {
+    "base": {
+      "name": "Base (prix unique)",
+      "periods": ["flat"],
+      "default": "flat",
+      "rules": {
+        "all": {
+          "all": {}
+        }
+      }
+    },
+    "hphc_22_06": {
+      "name": "Heures Creuses 22h–6h",
+      "periods": ["off_peak", "standard"],
+      "default": "standard",
+      "rules": {
+        "all": {
+          "all": {
+            "off_peak": [["00:00", "06:00"], ["22:00", "24:00"]]
+          }
+        }
+      }
+    },
+    "hphc_23_07": {
+      "name": "Heures Creuses 23h–7h",
+      "periods": ["off_peak", "standard"],
+      "default": "standard",
+      "rules": {
+        "all": {
+          "all": {
+            "off_peak": [["00:00", "07:00"], ["23:00", "24:00"]]
+          }
+        }
+      }
+    }
+  },
+  "prices": {}
+}

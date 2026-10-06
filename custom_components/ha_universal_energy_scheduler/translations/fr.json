@@ -1,0 +1,166 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Choisir le pays",
+        "description": "Choisissez le pays dont vous voulez suivre les tarifs d'électricité.\n\n⚠️ Bêta : les plages horaires et les prix doivent encore être confirmés. Vérifiez-les toujours avec votre facture et signalez les erreurs sur GitHub.",
+        "data": {
+          "country": "Pays"
+        }
+      },
+      "plan": {
+        "title": "Option tarifaire",
+        "description": "Options disponibles pour {country}.",
+        "data": {
+          "operator": "Fournisseur",
+          "plan": "Option tarifaire",
+          "holiday_entity": "Capteur de jours ouvrés (facultatif)"
+        },
+        "data_description": {
+          "operator": "Choisissez dans la liste ou saisissez le vôtre. Sert à nommer l'appareil et à suggérer des prix.",
+          "holiday_entity": "Uniquement pour les tarifs où les jours fériés comptent comme dimanche. Choisissez un capteur ÉTEINT les jours non ouvrés, comme celui de l'intégration Workday."
+        }
+      },
+      "price_mode": {
+        "title": "Prix",
+        "description": "Comment définir le prix du kWh pour {plan} ?\n\nPrix d'origine : {defaults}",
+        "data": {
+          "price_mode": "Source des prix"
+        }
+      },
+      "prices": {
+        "title": "Prix",
+        "description": "Prix du kWh pour chaque période de {plan}. Les champs sont pré-remplis avec les prix d'origine s'ils existent ; modifiez seulement ce qui diffère dans votre contrat.",
+        "data": {
+          "price_off_peak": "Prix heures creuses",
+          "price_mid_peak": "Prix intermédiaire",
+          "price_peak": "Prix pointe",
+          "price_standard": "Prix heures pleines",
+          "price_flat": "Prix"
+        }
+      }
+    },
+    "error": {
+      "cannot_load": "Impossible de charger les données tarifaires de ce pays."
+    },
+    "abort": {
+      "no_tariff_data": "Aucun fichier de données tarifaires trouvé."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options du tarif",
+        "description": "Modifiez l'option tarifaire pour {country}.",
+        "data": {
+          "operator": "Fournisseur",
+          "plan": "Option tarifaire",
+          "holiday_entity": "Capteur de jours ouvrés (facultatif)"
+        },
+        "data_description": {
+          "operator": "Choisissez dans la liste ou saisissez le vôtre. Sert à nommer l'appareil et à suggérer des prix.",
+          "holiday_entity": "Uniquement pour les tarifs où les jours fériés comptent comme dimanche. Choisissez un capteur ÉTEINT les jours non ouvrés, comme celui de l'intégration Workday."
+        }
+      },
+      "price_mode": {
+        "title": "Prix",
+        "description": "Comment définir le prix du kWh pour {plan} ?\n\nPrix d'origine : {defaults}",
+        "data": {
+          "price_mode": "Source des prix"
+        }
+      },
+      "prices": {
+        "title": "Prix",
+        "description": "Prix du kWh pour chaque période de {plan}. Les champs sont pré-remplis avec les prix d'origine s'ils existent ; modifiez seulement ce qui diffère dans votre contrat.",
+        "data": {
+          "price_off_peak": "Prix heures creuses",
+          "price_mid_peak": "Prix intermédiaire",
+          "price_peak": "Prix pointe",
+          "price_standard": "Prix heures pleines",
+          "price_flat": "Prix"
+        }
+      }
+    },
+    "abort": {
+      "cannot_load": "Impossible de charger les données tarifaires de ce pays."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "current_period": {
+        "name": "Période actuelle",
+        "state": {
+          "off_peak": "Heures creuses",
+          "mid_peak": "Intermédiaire",
+          "peak": "Pointe",
+          "standard": "Heures pleines",
+          "flat": "Base"
+        },
+        "state_attributes": {
+          "next_period": {
+            "name": "Période suivante",
+            "state": {
+              "off_peak": "Heures creuses",
+              "mid_peak": "Intermédiaire",
+              "peak": "Pointe",
+              "standard": "Heures pleines",
+              "flat": "Base"
+            }
+          },
+          "next_change": {
+            "name": "Prochain changement"
+          },
+          "season": {
+            "name": "Saison",
+            "state": {
+              "all": "Toute l'année",
+              "winter": "Hiver",
+              "summer": "Été"
+            }
+          },
+          "day_type": {
+            "name": "Type de jour",
+            "state": {
+              "workday": "Jour ouvré",
+              "saturday": "Samedi",
+              "sunday": "Dimanche",
+              "holiday": "Jour férié"
+            }
+          }
+        }
+      },
+      "next_change": {
+        "name": "Prochain changement",
+        "state_attributes": {
+          "next_period": {
+            "name": "Période suivante",
+            "state": {
+              "off_peak": "Heures creuses",
+              "mid_peak": "Intermédiaire",
+              "peak": "Pointe",
+              "standard": "Heures pleines",
+              "flat": "Base"
+            }
+          }
+        }
+      },
+      "current_price": {
+        "name": "Prix actuel"
+      }
+    },
+    "binary_sensor": {
+      "off_peak": {
+        "name": "Heures creuses"
+      }
+    }
+  },
+  "selector": {
+    "price_mode": {
+      "options": {
+        "default": "Utiliser les prix d'origine (mis à jour avec l'intégration)",
+        "manual": "Saisir mes propres prix",
+        "none": "Pas de prix"
+      }
+    }
+  }
+}

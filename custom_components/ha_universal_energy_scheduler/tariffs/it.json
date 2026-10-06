@@ -1,0 +1,62 @@
+{
+  "name": "Italia",
+  "source": "ARERA — fasce orarie F1/F2/F3 (delibera 181/06)",
+  "notes": "Le fasce sono uguali per tutti i fornitori. Domeniche e festività nazionali sono F3.",
+  "operators": [
+    "A2A Energia",
+    "Acea Energia",
+    "Edison",
+    "Enel Energia",
+    "Hera Comm",
+    "Iren",
+    "Plenitude",
+    "Sorgenia",
+    "Altro"
+  ],
+  "plans": {
+    "monoraria": {
+      "name": "Monoraria (prezzo unico)",
+      "periods": ["flat"],
+      "default": "flat",
+      "rules": {
+        "all": {
+          "all": {}
+        }
+      }
+    },
+    "bioraria": {
+      "name": "Bioraria (F1 / F23)",
+      "periods": ["off_peak", "peak"],
+      "default": "off_peak",
+      "rules": {
+        "all": {
+          "workday": {
+            "peak": [["08:00", "19:00"]]
+          }
+        }
+      }
+    },
+    "trioraria": {
+      "name": "Trioraria (F1 / F2 / F3)",
+      "periods": ["off_peak", "mid_peak", "peak"],
+      "default": "off_peak",
+      "rules": {
+        "all": {
+          "workday": {
+            "off_peak": [["00:00", "07:00"], ["23:00", "24:00"]],
+            "mid_peak": [["07:00", "08:00"], ["19:00", "23:00"]],
+            "peak": [["08:00", "19:00"]]
+          },
+          "saturday": {
+            "off_peak": [["00:00", "07:00"], ["23:00", "24:00"]],
+            "mid_peak": [["07:00", "23:00"]]
+          },
+          "sunday": {
+            "off_peak": [["00:00", "24:00"]]
+          }
+        }
+      }
+    }
+  },
+  "prices": {}
+}

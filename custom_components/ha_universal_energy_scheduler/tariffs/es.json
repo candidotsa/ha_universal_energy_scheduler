@@ -1,0 +1,45 @@
+{
+  "name": "España (Península, Baleares y Canarias)",
+  "source": "Circular 3/2020 CNMC — peajes 2.0TD",
+  "notes": "Los periodos 2.0TD son iguales para todas las comercializadoras. Fines de semana y festivos nacionales son valle (configure un sensor de días laborables para los festivos).",
+  "operators": [
+    "Endesa",
+    "Holaluz",
+    "Iberdrola",
+    "Naturgy",
+    "Octopus Energy",
+    "Repsol",
+    "TotalEnergies",
+    "Otra"
+  ],
+  "plans": {
+    "precio_unico": {
+      "name": "Precio único (sin discriminación horaria)",
+      "periods": ["flat"],
+      "default": "flat",
+      "rules": {
+        "all": {
+          "all": {}
+        }
+      }
+    },
+    "2_0td": {
+      "name": "2.0TD (punta / llano / valle)",
+      "periods": ["off_peak", "mid_peak", "peak"],
+      "default": "off_peak",
+      "rules": {
+        "all": {
+          "all": {
+            "off_peak": [["00:00", "24:00"]]
+          },
+          "workday": {
+            "off_peak": [["00:00", "08:00"]],
+            "mid_peak": [["08:00", "10:00"], ["14:00", "18:00"], ["22:00", "24:00"]],
+            "peak": [["10:00", "14:00"], ["18:00", "22:00"]]
+          }
+        }
+      }
+    }
+  },
+  "prices": {}
+}

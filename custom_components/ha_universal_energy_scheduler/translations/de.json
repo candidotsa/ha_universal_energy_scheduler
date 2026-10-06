@@ -1,0 +1,166 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Land wählen",
+        "description": "Wähle das Land, dessen Stromtarife verwendet werden sollen.\n\n⚠️ Beta: Tarifzeiten und Preise müssen noch bestätigt werden. Bitte immer mit der Stromrechnung abgleichen und Fehler auf GitHub melden.",
+        "data": {
+          "country": "Land"
+        }
+      },
+      "plan": {
+        "title": "Tarif",
+        "description": "Verfügbare Tarife für {country}.",
+        "data": {
+          "operator": "Stromanbieter",
+          "plan": "Tarif",
+          "holiday_entity": "Arbeitstag-Sensor (optional)"
+        },
+        "data_description": {
+          "operator": "Aus der Liste wählen oder selbst eingeben. Dient zur Benennung des Geräts und für Preisvorschläge.",
+          "holiday_entity": "Nur für Tarife, bei denen Feiertage wie Sonntage zählen. Wähle einen Sensor, der an arbeitsfreien Tagen AUS ist, z. B. von der Workday-Integration."
+        }
+      },
+      "price_mode": {
+        "title": "Preise",
+        "description": "Wie soll der Preis pro kWh für {plan} festgelegt werden?\n\nHinterlegte Preise: {defaults}",
+        "data": {
+          "price_mode": "Preisquelle"
+        }
+      },
+      "prices": {
+        "title": "Preise",
+        "description": "Preis pro kWh für jeden Zeitraum von {plan}. Hinterlegte Preise sind vorausgefüllt, falls vorhanden; nur ändern, was in deinem Vertrag abweicht.",
+        "data": {
+          "price_off_peak": "Preis Niedertarif",
+          "price_mid_peak": "Preis Mitteltarif",
+          "price_peak": "Preis Spitzentarif",
+          "price_standard": "Preis Hochtarif",
+          "price_flat": "Preis"
+        }
+      }
+    },
+    "error": {
+      "cannot_load": "Die Tarifdaten für dieses Land konnten nicht geladen werden."
+    },
+    "abort": {
+      "no_tariff_data": "Keine Tarifdateien gefunden."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Tarifoptionen",
+        "description": "Tarif für {country} ändern.",
+        "data": {
+          "operator": "Stromanbieter",
+          "plan": "Tarif",
+          "holiday_entity": "Arbeitstag-Sensor (optional)"
+        },
+        "data_description": {
+          "operator": "Aus der Liste wählen oder selbst eingeben. Dient zur Benennung des Geräts und für Preisvorschläge.",
+          "holiday_entity": "Nur für Tarife, bei denen Feiertage wie Sonntage zählen. Wähle einen Sensor, der an arbeitsfreien Tagen AUS ist, z. B. von der Workday-Integration."
+        }
+      },
+      "price_mode": {
+        "title": "Preise",
+        "description": "Wie soll der Preis pro kWh für {plan} festgelegt werden?\n\nHinterlegte Preise: {defaults}",
+        "data": {
+          "price_mode": "Preisquelle"
+        }
+      },
+      "prices": {
+        "title": "Preise",
+        "description": "Preis pro kWh für jeden Zeitraum von {plan}. Hinterlegte Preise sind vorausgefüllt, falls vorhanden; nur ändern, was in deinem Vertrag abweicht.",
+        "data": {
+          "price_off_peak": "Preis Niedertarif",
+          "price_mid_peak": "Preis Mitteltarif",
+          "price_peak": "Preis Spitzentarif",
+          "price_standard": "Preis Hochtarif",
+          "price_flat": "Preis"
+        }
+      }
+    },
+    "abort": {
+      "cannot_load": "Die Tarifdaten für dieses Land konnten nicht geladen werden."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "current_period": {
+        "name": "Aktueller Zeitraum",
+        "state": {
+          "off_peak": "Niedertarif (NT)",
+          "mid_peak": "Mitteltarif",
+          "peak": "Spitzentarif",
+          "standard": "Hochtarif (HT)",
+          "flat": "Eintarif"
+        },
+        "state_attributes": {
+          "next_period": {
+            "name": "Nächster Zeitraum",
+            "state": {
+              "off_peak": "Niedertarif (NT)",
+              "mid_peak": "Mitteltarif",
+              "peak": "Spitzentarif",
+              "standard": "Hochtarif (HT)",
+              "flat": "Eintarif"
+            }
+          },
+          "next_change": {
+            "name": "Nächster Wechsel"
+          },
+          "season": {
+            "name": "Saison",
+            "state": {
+              "all": "Ganzjährig",
+              "winter": "Winter",
+              "summer": "Sommer"
+            }
+          },
+          "day_type": {
+            "name": "Tagesart",
+            "state": {
+              "workday": "Werktag",
+              "saturday": "Samstag",
+              "sunday": "Sonntag",
+              "holiday": "Feiertag"
+            }
+          }
+        }
+      },
+      "next_change": {
+        "name": "Nächster Wechsel",
+        "state_attributes": {
+          "next_period": {
+            "name": "Nächster Zeitraum",
+            "state": {
+              "off_peak": "Niedertarif (NT)",
+              "mid_peak": "Mitteltarif",
+              "peak": "Spitzentarif",
+              "standard": "Hochtarif (HT)",
+              "flat": "Eintarif"
+            }
+          }
+        }
+      },
+      "current_price": {
+        "name": "Aktueller Preis"
+      }
+    },
+    "binary_sensor": {
+      "off_peak": {
+        "name": "Niedertarif"
+      }
+    }
+  },
+  "selector": {
+    "price_mode": {
+      "options": {
+        "default": "Hinterlegte Preise verwenden (werden mit der Integration aktualisiert)",
+        "manual": "Eigene Preise eingeben",
+        "none": "Keine Preise"
+      }
+    }
+  }
+}

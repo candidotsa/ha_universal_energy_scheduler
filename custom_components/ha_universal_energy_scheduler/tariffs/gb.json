@@ -1,0 +1,65 @@
+{
+  "name": "United Kingdom",
+  "source": "Supplier tariff pages (Octopus Energy); Economy 7 hours depend on your meter",
+  "notes": "Economy 7 hours vary by region and meter, and some meters stay on GMT all year — check your bill. Smart-charging slots outside the fixed window (Intelligent Octopus Go) are not modelled.",
+  "operators": [
+    "British Gas",
+    "E.ON Next",
+    "EDF",
+    "Octopus Energy",
+    "OVO Energy",
+    "ScottishPower",
+    "So Energy",
+    "Utility Warehouse",
+    "Other"
+  ],
+  "plans": {
+    "standard": {
+      "name": "Standard variable (single rate)",
+      "periods": ["flat"],
+      "default": "flat",
+      "rules": {
+        "all": {
+          "all": {}
+        }
+      }
+    },
+    "economy_7": {
+      "name": "Economy 7 (00:00–07:00, check your meter)",
+      "periods": ["off_peak", "standard"],
+      "default": "standard",
+      "rules": {
+        "all": {
+          "all": {
+            "off_peak": [["00:00", "07:00"]]
+          }
+        }
+      }
+    },
+    "octopus_go": {
+      "name": "Octopus Go (00:30–05:30)",
+      "periods": ["off_peak", "standard"],
+      "default": "standard",
+      "rules": {
+        "all": {
+          "all": {
+            "off_peak": [["00:30", "05:30"]]
+          }
+        }
+      }
+    },
+    "intelligent_octopus_go": {
+      "name": "Intelligent Octopus Go (23:30–05:30)",
+      "periods": ["off_peak", "standard"],
+      "default": "standard",
+      "rules": {
+        "all": {
+          "all": {
+            "off_peak": [["00:00", "05:30"], ["23:30", "24:00"]]
+          }
+        }
+      }
+    }
+  },
+  "prices": {}
+}

@@ -1,0 +1,166 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Elegir país",
+        "description": "Elija el país cuyas tarifas eléctricas quiere seguir.\n\n⚠️ Beta: los horarios y precios de las tarifas aún deben confirmarse. Compruébelos siempre con su factura e informe de errores en GitHub.",
+        "data": {
+          "country": "País"
+        }
+      },
+      "plan": {
+        "title": "Tarifa",
+        "description": "Tarifas disponibles para {country}.",
+        "data": {
+          "operator": "Comercializadora",
+          "plan": "Tarifa",
+          "holiday_entity": "Sensor de días laborables (opcional)"
+        },
+        "data_description": {
+          "operator": "Elija de la lista o escriba otra. Se usa para nombrar el dispositivo y sugerir precios.",
+          "holiday_entity": "Para tarifas en las que los festivos cuentan como domingo (p. ej. 2.0TD). Elija un sensor que esté APAGADO los días no laborables, como el de la integración Workday."
+        }
+      },
+      "price_mode": {
+        "title": "Precios",
+        "description": "¿Cómo quiere definir el precio por kWh de {plan}?\n\nPrecios de origen: {defaults}",
+        "data": {
+          "price_mode": "Origen de los precios"
+        }
+      },
+      "prices": {
+        "title": "Precios",
+        "description": "Precio por kWh de cada periodo de {plan}. Los campos vienen rellenados con los precios de origen si existen; cambie solo lo que sea distinto en su contrato.",
+        "data": {
+          "price_off_peak": "Precio valle",
+          "price_mid_peak": "Precio llano",
+          "price_peak": "Precio punta",
+          "price_standard": "Precio fuera de valle",
+          "price_flat": "Precio"
+        }
+      }
+    },
+    "error": {
+      "cannot_load": "No se pudieron cargar los datos de tarifas de este país."
+    },
+    "abort": {
+      "no_tariff_data": "No se encontraron ficheros de tarifas."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opciones de la tarifa",
+        "description": "Cambie la tarifa de {country}.",
+        "data": {
+          "operator": "Comercializadora",
+          "plan": "Tarifa",
+          "holiday_entity": "Sensor de días laborables (opcional)"
+        },
+        "data_description": {
+          "operator": "Elija de la lista o escriba otra. Se usa para nombrar el dispositivo y sugerir precios.",
+          "holiday_entity": "Para tarifas en las que los festivos cuentan como domingo (p. ej. 2.0TD). Elija un sensor que esté APAGADO los días no laborables, como el de la integración Workday."
+        }
+      },
+      "price_mode": {
+        "title": "Precios",
+        "description": "¿Cómo quiere definir el precio por kWh de {plan}?\n\nPrecios de origen: {defaults}",
+        "data": {
+          "price_mode": "Origen de los precios"
+        }
+      },
+      "prices": {
+        "title": "Precios",
+        "description": "Precio por kWh de cada periodo de {plan}. Los campos vienen rellenados con los precios de origen si existen; cambie solo lo que sea distinto en su contrato.",
+        "data": {
+          "price_off_peak": "Precio valle",
+          "price_mid_peak": "Precio llano",
+          "price_peak": "Precio punta",
+          "price_standard": "Precio fuera de valle",
+          "price_flat": "Precio"
+        }
+      }
+    },
+    "abort": {
+      "cannot_load": "No se pudieron cargar los datos de tarifas de este país."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "current_period": {
+        "name": "Periodo actual",
+        "state": {
+          "off_peak": "Valle",
+          "mid_peak": "Llano",
+          "peak": "Punta",
+          "standard": "Fuera de valle",
+          "flat": "Precio único"
+        },
+        "state_attributes": {
+          "next_period": {
+            "name": "Próximo periodo",
+            "state": {
+              "off_peak": "Valle",
+              "mid_peak": "Llano",
+              "peak": "Punta",
+              "standard": "Fuera de valle",
+              "flat": "Precio único"
+            }
+          },
+          "next_change": {
+            "name": "Próximo cambio"
+          },
+          "season": {
+            "name": "Temporada",
+            "state": {
+              "all": "Todo el año",
+              "winter": "Invierno",
+              "summer": "Verano"
+            }
+          },
+          "day_type": {
+            "name": "Tipo de día",
+            "state": {
+              "workday": "Laborable",
+              "saturday": "Sábado",
+              "sunday": "Domingo",
+              "holiday": "Festivo"
+            }
+          }
+        }
+      },
+      "next_change": {
+        "name": "Próximo cambio",
+        "state_attributes": {
+          "next_period": {
+            "name": "Próximo periodo",
+            "state": {
+              "off_peak": "Valle",
+              "mid_peak": "Llano",
+              "peak": "Punta",
+              "standard": "Fuera de valle",
+              "flat": "Precio único"
+            }
+          }
+        }
+      },
+      "current_price": {
+        "name": "Precio actual"
+      }
+    },
+    "binary_sensor": {
+      "off_peak": {
+        "name": "Valle"
+      }
+    }
+  },
+  "selector": {
+    "price_mode": {
+      "options": {
+        "default": "Usar precios de origen (se actualizan con la integración)",
+        "manual": "Introducir mis precios",
+        "none": "Sin precios"
+      }
+    }
+  }
+}

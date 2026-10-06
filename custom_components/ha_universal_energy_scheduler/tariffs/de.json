@@ -1,0 +1,52 @@
+{
+  "name": "Deutschland",
+  "source": "Übliche Zeitfenster; HT/NT-Zeiten legt der Netzbetreiber fest",
+  "notes": "HT/NT-Zeiten (z. B. für Wärmepumpe oder Nachtspeicher) unterscheiden sich je nach Netzbetreiber — bitte mit der Rechnung prüfen. Dynamische Tarife (z. B. börsenbasiert) werden nicht unterstützt.",
+  "operators": [
+    "E.ON",
+    "EnBW",
+    "Octopus Energy",
+    "Stadtwerke",
+    "Tibber",
+    "Vattenfall",
+    "Yello",
+    "Andere"
+  ],
+  "plans": {
+    "eintarif": {
+      "name": "Eintarif (Einheitspreis)",
+      "periods": ["flat"],
+      "default": "flat",
+      "rules": {
+        "all": {
+          "all": {}
+        }
+      }
+    },
+    "ht_nt_22_06": {
+      "name": "HT/NT — Niedertarif 22–6 Uhr",
+      "periods": ["off_peak", "standard"],
+      "default": "standard",
+      "rules": {
+        "all": {
+          "all": {
+            "off_peak": [["00:00", "06:00"], ["22:00", "24:00"]]
+          }
+        }
+      }
+    },
+    "ht_nt_21_06": {
+      "name": "HT/NT — Niedertarif 21–6 Uhr",
+      "periods": ["off_peak", "standard"],
+      "default": "standard",
+      "rules": {
+        "all": {
+          "all": {
+            "off_peak": [["00:00", "06:00"], ["21:00", "24:00"]]
+          }
+        }
+      }
+    }
+  },
+  "prices": {}
+}

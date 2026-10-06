@@ -1,0 +1,30 @@
+{
+  "entity": {
+    "sensor": {
+      "current_period": {
+        "default": "mdi:clock-outline",
+        "state": {
+          "off_peak": "mdi:leaf",
+          "mid_peak": "mdi:flash-outline",
+          "peak": "mdi:flash-alert",
+          "standard": "mdi:flash",
+          "flat": "mdi:flash"
+        }
+      },
+      "next_change": {
+        "default": "mdi:clock-end"
+      },
+      "current_price": {
+        "default": "mdi:cash"
+      }
+    },
+    "binary_sensor": {
+      "off_peak": {
+        "default": "mdi:leaf-off",
+        "state": {
+          "on": "mdi:leaf"
+        }
+      }
+    }
+  }
+}

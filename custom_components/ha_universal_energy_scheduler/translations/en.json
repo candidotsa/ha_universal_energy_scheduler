@@ -1,0 +1,166 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Choose country",
+        "description": "Pick the country whose electricity tariffs you want to follow.\n\n⚠️ Beta: tariff schedules and prices still need to be confirmed. Always check them against your bill and report errors on GitHub.",
+        "data": {
+          "country": "Country"
+        }
+      },
+      "plan": {
+        "title": "Tariff",
+        "description": "Tariffs available for {country}.",
+        "data": {
+          "operator": "Supplier",
+          "plan": "Tariff plan",
+          "holiday_entity": "Workday sensor (optional)"
+        },
+        "data_description": {
+          "operator": "Pick from the list or type your own. Used to name the device and to suggest prices.",
+          "holiday_entity": "Only for tariffs where public holidays count as Sunday (e.g. Spain 2.0TD, Italy). Select a sensor that is OFF on non-working days, such as the Workday integration."
+        }
+      },
+      "price_mode": {
+        "title": "Prices",
+        "description": "How should the price per kWh for {plan} be set?\n\nBuilt-in prices: {defaults}",
+        "data": {
+          "price_mode": "Price source"
+        }
+      },
+      "prices": {
+        "title": "Prices",
+        "description": "Price per kWh for each period of {plan}. The fields are pre-filled with the built-in prices when they exist; change only what is different in your contract.",
+        "data": {
+          "price_off_peak": "Off-peak price",
+          "price_mid_peak": "Mid-peak price",
+          "price_peak": "Peak price",
+          "price_standard": "Standard price",
+          "price_flat": "Price"
+        }
+      }
+    },
+    "error": {
+      "cannot_load": "Could not load the tariff data for this country."
+    },
+    "abort": {
+      "no_tariff_data": "No tariff data files were found."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Tariff options",
+        "description": "Change the tariff for {country} (for example when your meter moves to new schedules).",
+        "data": {
+          "operator": "Supplier",
+          "plan": "Tariff plan",
+          "holiday_entity": "Workday sensor (optional)"
+        },
+        "data_description": {
+          "operator": "Pick from the list or type your own. Used to name the device and to suggest prices.",
+          "holiday_entity": "Only for tariffs where public holidays count as Sunday (e.g. Spain 2.0TD, Italy). Select a sensor that is OFF on non-working days, such as the Workday integration."
+        }
+      },
+      "price_mode": {
+        "title": "Prices",
+        "description": "How should the price per kWh for {plan} be set?\n\nBuilt-in prices: {defaults}",
+        "data": {
+          "price_mode": "Price source"
+        }
+      },
+      "prices": {
+        "title": "Prices",
+        "description": "Price per kWh for each period of {plan}. The fields are pre-filled with the built-in prices when they exist; change only what is different in your contract.",
+        "data": {
+          "price_off_peak": "Off-peak price",
+          "price_mid_peak": "Mid-peak price",
+          "price_peak": "Peak price",
+          "price_standard": "Standard price",
+          "price_flat": "Price"
+        }
+      }
+    },
+    "abort": {
+      "cannot_load": "Could not load the tariff data for this country."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "current_period": {
+        "name": "Current period",
+        "state": {
+          "off_peak": "Off-peak",
+          "mid_peak": "Mid-peak",
+          "peak": "Peak",
+          "standard": "Standard",
+          "flat": "Flat rate"
+        },
+        "state_attributes": {
+          "next_period": {
+            "name": "Next period",
+            "state": {
+              "off_peak": "Off-peak",
+              "mid_peak": "Mid-peak",
+              "peak": "Peak",
+              "standard": "Standard",
+              "flat": "Flat rate"
+            }
+          },
+          "next_change": {
+            "name": "Next change"
+          },
+          "season": {
+            "name": "Season",
+            "state": {
+              "all": "All year",
+              "winter": "Winter",
+              "summer": "Summer"
+            }
+          },
+          "day_type": {
+            "name": "Day type",
+            "state": {
+              "workday": "Workday",
+              "saturday": "Saturday",
+              "sunday": "Sunday",
+              "holiday": "Holiday"
+            }
+          }
+        }
+      },
+      "next_change": {
+        "name": "Next change",
+        "state_attributes": {
+          "next_period": {
+            "name": "Next period",
+            "state": {
+              "off_peak": "Off-peak",
+              "mid_peak": "Mid-peak",
+              "peak": "Peak",
+              "standard": "Standard",
+              "flat": "Flat rate"
+            }
+          }
+        }
+      },
+      "current_price": {
+        "name": "Current price"
+      }
+    },
+    "binary_sensor": {
+      "off_peak": {
+        "name": "Off-peak"
+      }
+    }
+  },
+  "selector": {
+    "price_mode": {
+      "options": {
+        "default": "Use built-in prices (updated with the integration)",
+        "manual": "Enter my own prices",
+        "none": "No prices"
+      }
+    }
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "name": "Portugal (Continente)",
+  "source": "ERSE — Períodos horários BTN em Portugal Continental (https://www.erse.pt)",
+  "notes": "Os períodos horários são definidos pela ERSE e são iguais em todos os comercializadores. O operador serve para identificar o contrato e para sugerir preços, se existirem em 'prices'.",
+  "operators": [
+    "Coopérnico",
+    "EDP Comercial",
+    "Endesa",
+    "G9",
+    "Galp",
+    "Goldenergy",
+    "Iberdrola",
+    "Luzboa",
+    "MEO Energia",
+    "Plenitude",
+    "Repsol",
+    "SU Eletricidade",
+    "Outro"
+  ],
+  "plans": {
+    "simples": {
+      "name": "Simples (normal)",
+      "periods": ["flat"],
+      "default": "flat",
+      "rules": {
+        "all": {
+          "all": {}
+        }
+      }
+    },
+    "bi_horario_diario": {
+      "name": "Bi-horário — ciclo diário",
+      "periods": ["off_peak", "standard"],
+      "default": "standard",
+      "rules": {
+        "all": {
+          "all": {
+            "off_peak": [["00:00", "08:00"], ["22:00", "24:00"]]
+          }
+        }
+      }
+    },
+    "bi_horario_semanal": {
+      "name": "Bi-horário — ciclo semanal",
+      "periods": ["off_peak", "standard"],
+      "default": "standard",
+      "rules": {
+        "winter": {
+          "workday": {
+            "off_peak": [["00:00", "07:00"]]
+          },
+          "saturday": {
+            "off_peak": [["00:00", "09:30"], ["13:00", "18:30"], ["22:00", "24:00"]]
+          },
+          "sunday": {
+            "off_peak": [["00:00", "24:00"]]
+          }
+        },
+        "summer": {
+          "workday": {
+            "off_peak": [["00:00", "07:00"]]
+          },
+          "saturday": {
+            "off_peak": [["00:00", "09:00"], ["14:00", "20:00"], ["22:00", "24:00"]]
+          },
+          "sunday": {
+            "off_peak": [["00:00", "24:00"]]
+          }
+        }
+      }
+    },
+    "tri_horario_diario": {
+      "name": "Tri-horário — ciclo diário",
+      "periods": ["off_peak", "mid_peak", "peak"],
+      "default": "off_peak",
+      "rules": {
+        "winter": {
+          "all": {
+            "off_peak": [["00:00", "08:00"], ["22:00", "24:00"]],
+            "mid_peak": [["08:00", "09:00"], ["10:30", "18:00"], ["20:30", "22:00"]],
+            "peak": [["09:00", "10:30"], ["18:00", "20:30"]]
+          }
+        },
+        "summer": {
+          "all": {
+            "off_peak": [["00:00", "08:00"], ["22:00", "24:00"]],
+            "mid_peak": [["08:00", "10:30"], ["13:00", "19:30"], ["21:00", "22:00"]],
+            "peak": [["10:30", "13:00"], ["19:30", "21:00"]]
+          }
+        }
+      }
+    },
+    "tri_horario_semanal": {
+      "name": "Tri-horário — ciclo semanal",
+      "periods": ["off_peak", "mid_peak", "peak"],
+      "default": "off_peak",
+      "rules": {
+        "winter": {
+          "workday": {
+            "off_peak": [["00:00", "07:00"]],
+            "mid_peak": [["07:00", "09:30"], ["12:00", "18:30"], ["21:00", "24:00"]],
+            "peak": [["09:30", "12:00"], ["18:30", "21:00"]]
+          },
+          "saturday": {
+            "mid_peak": [["09:30", "13:00"], ["18:30", "22:00"]]
+          },
+          "sunday": {
+            "off_peak": [["00:00", "24:00"]]
+          }
+        },
+        "summer": {
+          "workday": {
+            "off_peak": [["00:00", "07:00"]],
+            "mid_peak": [["07:00", "09:15"], ["12:15", "24:00"]],
+            "peak": [["09:15", "12:15"]]
+          },
+          "saturday": {
+            "mid_peak": [["09:00", "14:00"], ["20:00", "22:00"]]
+          },
+          "sunday": {
+            "off_peak": [["00:00", "24:00"]]
+          }
+        }
+      }
+    },
+    "bi_horario_diario_2027": {
+      "name": "Bi-horário — ciclo diário (novos horários ERSE 2027)",
+      "periods": ["off_peak", "standard"],
+      "default": "standard",
+      "rules": {
+        "all": {
+          "all": {
+            "off_peak": [["00:00", "08:30"], ["22:30", "24:00"]]
+          }
+        }
+      }
+    }
+  },
+  "prices": {
+    "SU Eletricidade": {
+      "simples": {
+        "valid_from": "2026-01-01",
+        "note": "Tarifa regulada ERSE 2026 (BTN 3,45–20,7 kVA), sem IVA",
+        "source": "https://www.erse.pt/media/lamnmp31/diretiva-erse-10-2025-tep-se-2026.pdf",
+        "values": {
+          "flat": 0.1654
+        }
+      },
+      "bi_horario_diario": {
+        "valid_from": "2026-01-01",
+        "note": "Tarifa regulada ERSE 2026 (BTN 3,45–20,7 kVA), sem IVA",
+        "source": "https://www.erse.pt/media/lamnmp31/diretiva-erse-10-2025-tep-se-2026.pdf",
+        "values": {
+          "off_peak": 0.1087,
+          "standard": 0.1988
+        }
+      },
+      "bi_horario_semanal": {
+        "valid_from": "2026-01-01",
+        "note": "Tarifa regulada ERSE 2026 (BTN 3,45–20,7 kVA), sem IVA",
+        "source": "https://www.erse.pt/media/lamnmp31/diretiva-erse-10-2025-tep-se-2026.pdf",
+        "values": {
+          "off_peak": 0.1087,
+          "standard": 0.1988
+        }
+      },
+      "tri_horario_diario": {
+        "valid_from": "2026-01-01",
+        "note": "Tarifa regulada ERSE 2026 (BTN 3,45–20,7 kVA), sem IVA",
+        "source": "https://www.erse.pt/media/lamnmp31/diretiva-erse-10-2025-tep-se-2026.pdf",
+        "values": {
+          "off_peak": 0.1087,
+          "mid_peak": 0.169,
+          "peak": 0.2495
+        }
+      },
+      "tri_horario_semanal": {
+        "valid_from": "2026-01-01",
+        "note": "Tarifa regulada ERSE 2026 (BTN 3,45–20,7 kVA), sem IVA",
+        "source": "https://www.erse.pt/media/lamnmp31/diretiva-erse-10-2025-tep-se-2026.pdf",
+        "values": {
+          "off_peak": 0.1087,
+          "mid_peak": 0.169,
+          "peak": 0.2495
+        }
+      }
+    }
+  }
+}

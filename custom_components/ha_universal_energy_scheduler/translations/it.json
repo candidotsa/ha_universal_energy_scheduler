@@ -1,0 +1,166 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Scegli il paese",
+        "description": "Scegli il paese di cui seguire le tariffe elettriche.\n\n⚠️ Beta: orari e prezzi delle tariffe devono ancora essere confermati. Verificali sempre con la bolletta e segnala gli errori su GitHub.",
+        "data": {
+          "country": "Paese"
+        }
+      },
+      "plan": {
+        "title": "Tariffa",
+        "description": "Tariffe disponibili per {country}.",
+        "data": {
+          "operator": "Fornitore",
+          "plan": "Tariffa",
+          "holiday_entity": "Sensore giorni lavorativi (facoltativo)"
+        },
+        "data_description": {
+          "operator": "Scegli dall'elenco o scrivi il tuo. Serve a nominare il dispositivo e a suggerire i prezzi.",
+          "holiday_entity": "Per le tariffe in cui i festivi valgono come domenica (es. fascia F3 in Italia). Scegli un sensore SPENTO nei giorni non lavorativi, come quello dell'integrazione Workday."
+        }
+      },
+      "price_mode": {
+        "title": "Prezzi",
+        "description": "Come vuoi impostare il prezzo per kWh di {plan}?\n\nPrezzi predefiniti: {defaults}",
+        "data": {
+          "price_mode": "Origine dei prezzi"
+        }
+      },
+      "prices": {
+        "title": "Prezzi",
+        "description": "Prezzo per kWh di ogni fascia di {plan}. I campi sono precompilati con i prezzi predefiniti se esistono; modifica solo ciò che è diverso nel tuo contratto.",
+        "data": {
+          "price_off_peak": "Prezzo fuori punta",
+          "price_mid_peak": "Prezzo intermedio",
+          "price_peak": "Prezzo punta",
+          "price_standard": "Prezzo ore piene",
+          "price_flat": "Prezzo"
+        }
+      }
+    },
+    "error": {
+      "cannot_load": "Impossibile caricare i dati tariffari di questo paese."
+    },
+    "abort": {
+      "no_tariff_data": "Nessun file di dati tariffari trovato."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opzioni tariffa",
+        "description": "Modifica la tariffa per {country}.",
+        "data": {
+          "operator": "Fornitore",
+          "plan": "Tariffa",
+          "holiday_entity": "Sensore giorni lavorativi (facoltativo)"
+        },
+        "data_description": {
+          "operator": "Scegli dall'elenco o scrivi il tuo. Serve a nominare il dispositivo e a suggerire i prezzi.",
+          "holiday_entity": "Per le tariffe in cui i festivi valgono come domenica (es. fascia F3 in Italia). Scegli un sensore SPENTO nei giorni non lavorativi, come quello dell'integrazione Workday."
+        }
+      },
+      "price_mode": {
+        "title": "Prezzi",
+        "description": "Come vuoi impostare il prezzo per kWh di {plan}?\n\nPrezzi predefiniti: {defaults}",
+        "data": {
+          "price_mode": "Origine dei prezzi"
+        }
+      },
+      "prices": {
+        "title": "Prezzi",
+        "description": "Prezzo per kWh di ogni fascia di {plan}. I campi sono precompilati con i prezzi predefiniti se esistono; modifica solo ciò che è diverso nel tuo contratto.",
+        "data": {
+          "price_off_peak": "Prezzo fuori punta",
+          "price_mid_peak": "Prezzo intermedio",
+          "price_peak": "Prezzo punta",
+          "price_standard": "Prezzo ore piene",
+          "price_flat": "Prezzo"
+        }
+      }
+    },
+    "abort": {
+      "cannot_load": "Impossibile caricare i dati tariffari di questo paese."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "current_period": {
+        "name": "Fascia attuale",
+        "state": {
+          "off_peak": "Fuori punta",
+          "mid_peak": "Intermedia",
+          "peak": "Punta",
+          "standard": "Ore piene",
+          "flat": "Monoraria"
+        },
+        "state_attributes": {
+          "next_period": {
+            "name": "Prossima fascia",
+            "state": {
+              "off_peak": "Fuori punta",
+              "mid_peak": "Intermedia",
+              "peak": "Punta",
+              "standard": "Ore piene",
+              "flat": "Monoraria"
+            }
+          },
+          "next_change": {
+            "name": "Prossimo cambio"
+          },
+          "season": {
+            "name": "Stagione",
+            "state": {
+              "all": "Tutto l'anno",
+              "winter": "Inverno",
+              "summer": "Estate"
+            }
+          },
+          "day_type": {
+            "name": "Tipo di giorno",
+            "state": {
+              "workday": "Feriale",
+              "saturday": "Sabato",
+              "sunday": "Domenica",
+              "holiday": "Festivo"
+            }
+          }
+        }
+      },
+      "next_change": {
+        "name": "Prossimo cambio",
+        "state_attributes": {
+          "next_period": {
+            "name": "Prossima fascia",
+            "state": {
+              "off_peak": "Fuori punta",
+              "mid_peak": "Intermedia",
+              "peak": "Punta",
+              "standard": "Ore piene",
+              "flat": "Monoraria"
+            }
+          }
+        }
+      },
+      "current_price": {
+        "name": "Prezzo attuale"
+      }
+    },
+    "binary_sensor": {
+      "off_peak": {
+        "name": "Fuori punta"
+      }
+    }
+  },
+  "selector": {
+    "price_mode": {
+      "options": {
+        "default": "Usa i prezzi predefiniti (aggiornati con l'integrazione)",
+        "manual": "Inserisci i miei prezzi",
+        "none": "Nessun prezzo"
+      }
+    }
+  }
+}
