@@ -1,0 +1,31 @@
+name: New or wrong tariff schedule
+description: Report a schedule that is missing or incorrect
+labels: ["tariff-data"]
+body:
+  - type: input
+    id: country
+    attributes:
+      label: Country / region
+      placeholder: "Portugal (Continente), Madeira, España..."
+    validations:
+      required: true
+  - type: input
+    id: plan
+    attributes:
+      label: Tariff plan
+      placeholder: "Bi-horário ciclo semanal"
+    validations:
+      required: true
+  - type: textarea
+    id: schedule
+    attributes:
+      label: Schedule (periods and hours, per season / day type)
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Official source (link)
+      description: Regulator or supplier page/PDF. Schedules without a source can't be merged.
+    validations:
+      required: true
