@@ -1,0 +1,28 @@
+name: Bug report
+description: Something is not working
+labels: ["bug"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Integration version and Home Assistant version
+    validations:
+      required: true
+  - type: input
+    id: plan
+    attributes:
+      label: Country and tariff plan selected
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+      description: Include the time it happened and the sensor state/attributes.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      render: text
