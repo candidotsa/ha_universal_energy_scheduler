@@ -3,6 +3,8 @@
 from homeassistant.const import Platform
 
 DOMAIN = "ha_universal_energy_scheduler"
+# Start of every entity ID, e.g. sensor.energy_scheduler_current_period.
+ENTITY_OBJECT_ID_PREFIX = "energy_scheduler"
 PLATFORMS: list[Platform] = [Platform.SENSOR, Platform.BINARY_SENSOR]
 
 CONF_COUNTRY = "country"

@@ -124,7 +124,7 @@ def _prices_from_input(plan: Plan, user_input: dict[str, Any]) -> dict[str, floa
 
 
 def _title(country: CountryData, data: dict[str, Any]) -> str:
-    return f"{data[CONF_OPERATOR]} · {country.plans[data[CONF_PLAN]].name}"
+    return country.title(data[CONF_OPERATOR], data[CONF_PLAN])
 
 
 async def _describe_prices(hass: HomeAssistant, plan: Plan, prices: PriceSet | None) -> str:
@@ -354,9 +354,8 @@ class EnergySchedulerOptionsFlow(_PriceSteps, OptionsFlow):
         return self._save({CONF_PRICES: _prices_from_input(self._plan(), user_input)})
 
     def _save(self, extra: dict[str, Any]) -> ConfigFlowResult:
-        assert self._country is not None
-        data = {**self._flow_data, **extra}
-        self.hass.config_entries.async_update_entry(
-            self.config_entry, title=_title(self._country, data)
-        )
-        return self.async_create_entry(data=data)
+        # Only store the options here. The title is brought up to date in
+        # async_setup_entry: changing it from the flow fired the update
+        # listener before the new options were saved, so the entry reloaded
+        # with the old supplier and prices and never reloaded again.
+        return self.async_create_entry(data={**self._flow_data, **extra})

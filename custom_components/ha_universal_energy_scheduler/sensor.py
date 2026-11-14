@@ -5,7 +5,12 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any
 
-from homeassistant.components.sensor import SensorDeviceClass, SensorEntity, SensorStateClass
+from homeassistant.components.sensor import (
+    ENTITY_ID_FORMAT,
+    SensorDeviceClass,
+    SensorEntity,
+    SensorStateClass,
+)
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
@@ -34,7 +39,7 @@ class CurrentPeriodSensor(EnergySchedulerEntity, SensorEntity):
     _attr_device_class = SensorDeviceClass.ENUM
 
     def __init__(self, coordinator: EnergySchedulerCoordinator) -> None:
-        super().__init__(coordinator, "current_period")
+        super().__init__(coordinator, "current_period", ENTITY_ID_FORMAT)
         self._attr_options = list(coordinator.plan.periods)
 
     @property
@@ -60,7 +65,7 @@ class NextChangeSensor(EnergySchedulerEntity, SensorEntity):
     _attr_device_class = SensorDeviceClass.TIMESTAMP
 
     def __init__(self, coordinator: EnergySchedulerCoordinator) -> None:
-        super().__init__(coordinator, "next_change")
+        super().__init__(coordinator, "next_change", ENTITY_ID_FORMAT)
 
     @property
     def native_value(self) -> datetime | None:
@@ -78,7 +83,7 @@ class CurrentPriceSensor(EnergySchedulerEntity, SensorEntity):
     _attr_suggested_display_precision = 4
 
     def __init__(self, coordinator: EnergySchedulerCoordinator) -> None:
-        super().__init__(coordinator, "current_price")
+        super().__init__(coordinator, "current_price", ENTITY_ID_FORMAT)
         self._attr_native_unit_of_measurement = f"{coordinator.hass.config.currency}/kWh"
 
     @property

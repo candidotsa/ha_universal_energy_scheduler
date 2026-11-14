@@ -6,7 +6,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryError
 
-from .const import CONF_COUNTRY, CONF_PLAN, PLATFORMS
+from .const import CONF_COUNTRY, CONF_OPERATOR, CONF_PLAN, PLATFORMS
 from .coordinator import EnergySchedulerCoordinator
 from .schedule import ScheduleError, load_country
 
@@ -31,7 +31,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: EnergySchedulerConfigEnt
             "open the integration options and pick another plan"
         )
 
-    coordinator = EnergySchedulerCoordinator(hass, entry, country, plan, config)
+    # Keep the title (and so the device name) in step with the supplier and
+    # plan. Done here, before the update listener is added, so it never
+    # triggers a second reload.
+    title = country.title(config[CONF_OPERATOR], plan.key)
+    if entry.title != title:
+        hass.config_entries.async_update_entry(entry, title=title)
+
+    coordinator =EnergySchedulerCoordinator(hass, entry, country, plan, config)
     await coordinator.async_config_entry_first_refresh()
     coordinator.async_start()
     entry.async_on_unload(coordinator.async_stop)

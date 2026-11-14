@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0-beta.2
+
+- Fixed: after changing supplier, plan or prices in **Configure**, the entry kept the old supplier and prices until it was reloaded by hand. The title is now updated when the entry is set up, so a single reload applies everything.
+- Entity IDs no longer depend on the supplier or plan: new installations get `sensor.energy_scheduler_current_period`, `sensor.energy_scheduler_next_change`, `sensor.energy_scheduler_current_price` and `binary_sensor.energy_scheduler_off_peak`. Changing supplier or plan never renames them. Existing installations keep their current entity IDs.
+- Tests for the options flow and entity IDs (run when `pytest-homeassistant-custom-component` is installed).
+- Changes made with AI assistance (Claude).
+
 ## 1.0.0-beta.1 — first public beta
 
 - Fixed: "Unknown error" when choosing to enter your own prices (invalid number selector step).

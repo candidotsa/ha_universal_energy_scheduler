@@ -68,10 +68,10 @@ Seasons (winter/summer) follow legal time (DST) of your Home Assistant time zone
 
 | Entity | Description |
 |---|---|
-| `sensor.<name>_current_period` | `off_peak`, `mid_peak`, `peak` or `standard` (shown translated). Attributes: `next_period`, `next_change`, `season`, `day_type`, `plan`. |
-| `sensor.<name>_next_change` | Timestamp of the next period change, with `next_period`. |
-| `binary_sensor.<name>_off_peak` | `on` during the off-peak period (time-of-use plans only). |
-| `sensor.<name>_current_price` | Price per kWh of the active period (only when prices are set). Attributes: `next_price`, `next_change`, all period prices, `price_source` (`default`/`manual`) and, for built-in prices, `prices_valid_from` and `prices_note`. |
+| `sensor.energy_scheduler_current_period` | `off_peak`, `mid_peak`, `peak` or `standard` (shown translated). Attributes: `next_period`, `next_change`, `season`, `day_type`, `plan`. |
+| `sensor.energy_scheduler_next_change` | Timestamp of the next period change, with `next_period`. |
+| `binary_sensor.energy_scheduler_off_peak` | `on` during the off-peak period (time-of-use plans only). |
+| `sensor.energy_scheduler_current_price` | Price per kWh of the active period (only when prices are set). Attributes: `next_price`, `next_change`, all period prices, `price_source` (`default`/`manual`) and, for built-in prices, `prices_valid_from` and `prices_note`. |
 
 The **current price** sensor can be used directly in the **Energy dashboard** (*Settings → Dashboards → Energy → Grid consumption → Use an entity with current price*).
 
@@ -85,7 +85,7 @@ How periods map to local names:
 | `standard` | Fora de vazio | — | Heures pleines | Hochtarif (HT) | — | Peak / day rate |
 | `flat` | Simples | Precio único | Base | Eintarif | Monoraria | Single rate |
 
-Check the real entity IDs in **Settings → Entities** — they depend on the device name.
+Entity IDs are fixed and do not include the supplier or plan, so automations and the Energy dashboard keep working when you change either in **Configure** (the device name and friendly names do follow the new supplier). With more than one tariff, Home Assistant adds `_2`, `_3`… to the second and later ones. Installations created before 1.0.0-beta.2 keep their old entity IDs; rename them in **Settings → Entities** if you want.
 
 ## Automation examples
 
@@ -96,7 +96,7 @@ automation:
   - alias: Dishwasher at off-peak
     triggers:
       - trigger: state
-        entity_id: binary_sensor.edp_comercial_bi_horario_ciclo_semanal_off_peak
+        entity_id: binary_sensor.energy_scheduler_off_peak
         to: "on"
     actions:
       - action: switch.turn_on
@@ -111,7 +111,7 @@ automation:
   - alias: Pause heater during peak
     triggers:
       - trigger: state
-        entity_id: sensor.edp_comercial_tri_horario_ciclo_diario_current_period
+        entity_id: sensor.energy_scheduler_current_period
         to: peak
     actions:
       - action: switch.turn_off

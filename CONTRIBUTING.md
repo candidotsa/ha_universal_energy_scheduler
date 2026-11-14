@@ -62,4 +62,6 @@ pytest -q tests
 ```
 
 The tests load every tariff file, so an invalid file fails CI.
+
+`tests/test_integration.py` runs inside Home Assistant (options flow, entity IDs). It is skipped unless you also run `pip install pytest-homeassistant-custom-component`, then `pytest -q tests -o asyncio_mode=auto`.
 Please add a few assertions for new plans in `tests/test_schedule.py` (a known time → expected period).
