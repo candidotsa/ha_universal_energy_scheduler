@@ -244,6 +244,10 @@ class CountryData:
     def default_prices(self, operator: str | None, plan_key: str) -> PriceSet | None:
         return self.prices.get(operator or "", {}).get(plan_key)
 
+    def title(self, operator: str, plan_key: str) -> str:
+        """Config entry / device title, e.g. 'EDP Comercial · Bi-horário — ciclo semanal'."""
+        return f"{operator} · {self.plans[plan_key].name}"
+
 
 def _require_aware(moment: datetime) -> None:
     if moment.tzinfo is None:

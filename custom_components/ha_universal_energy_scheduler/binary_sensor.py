@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from homeassistant.components.binary_sensor import BinarySensorEntity
+from homeassistant.components.binary_sensor import ENTITY_ID_FORMAT, BinarySensorEntity
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
@@ -25,7 +25,7 @@ class OffPeakBinarySensor(EnergySchedulerEntity, BinarySensorEntity):
     """On while the off-peak (vazio / valle / heures creuses) period is active."""
 
     def __init__(self, coordinator: EnergySchedulerCoordinator) -> None:
-        super().__init__(coordinator, "off_peak")
+        super().__init__(coordinator, "off_peak", ENTITY_ID_FORMAT)
 
     @property
     def is_on(self) -> bool:

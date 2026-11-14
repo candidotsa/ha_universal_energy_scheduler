@@ -5,7 +5,7 @@ from __future__ import annotations
 from homeassistant.helpers.device_registry import DeviceEntryType, DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import DOMAIN
+from .const import DOMAIN, ENTITY_OBJECT_ID_PREFIX
 from .coordinator import EnergySchedulerCoordinator
 
 
@@ -14,11 +14,18 @@ class EnergySchedulerEntity(CoordinatorEntity[EnergySchedulerCoordinator]):
 
     _attr_has_entity_name = True
 
-    def __init__(self, coordinator: EnergySchedulerCoordinator, key: str) -> None:
+    def __init__(
+        self, coordinator: EnergySchedulerCoordinator, key: str, entity_id_format: str
+    ) -> None:
         super().__init__(coordinator)
         entry = coordinator.config_entry
         self._attr_translation_key = key
         self._attr_unique_id = f"{entry.entry_id}_{key}"
+        # Fixed entity ID (e.g. sensor.energy_scheduler_current_price) instead
+        # of one built from the device name, which holds the supplier and plan.
+        # Changing supplier or plan therefore never asks to rename entities.
+        # Only used the first time; Home Assistant adds _2, _3… if taken.
+        self.entity_id = entity_id_format.format(f"{ENTITY_OBJECT_ID_PREFIX}_{key}")
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, entry.entry_id)},
             name=entry.title,
